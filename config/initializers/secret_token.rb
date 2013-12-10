@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Starcats::Application.config.secret_key_base = '36f065c49eb3d575cb3ff66fab9ca6b7b779df3ab082633e65a3744502caf3bb2ae6f7c2be9b043aa49a31c65379a74fae008e93ff8962c0064d1ac96b565ddc'
+require 'securerandom'
+
+def secure_token
+	token_file = Rails.root.join('.secret')
+	if File.exist?(token_file)
+		#Use the existing token
+		File.read(token_file).chomp
+	else
+		#Generate a new token and store it in the token file
+		token = SecureRandom.hex(64)
+		File.write(token_file, token)
+		token
+	end
+end
+
+Starcats::Application.config.secret_key_base = secure_token
