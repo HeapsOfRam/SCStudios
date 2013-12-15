@@ -49,4 +49,16 @@ describe "Pages" do
       expect(page).to have_content('Contact')
     end
   end
+
+  describe "Fair Use page" do
+    before { visit about_fairuse_path }
+    
+    it "should have the right title" do
+      expect(page).to have_title("Starcat Studios | Fair Use")
+    end
+
+    it "should have the content 'Fair Use'" do
+      expect(page).to have_content('Fair Use')
+    end
+  end
 end

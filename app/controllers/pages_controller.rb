@@ -10,4 +10,7 @@ class PagesController < ApplicationController
 
   def contact
   end
+
+  def fairuse
+  end
 end
